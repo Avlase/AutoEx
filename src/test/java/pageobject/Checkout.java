@@ -4,26 +4,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Cart {
+public class Checkout {
+
     private final WebDriver driver;
 
     private static final String PRODUCT_ID = "//*[@id=\"product-8\"]/td[2]/h4/a";
-    private static final String QUAINTITY = "//*[@id=\"product-8\"]/td[4]/button";
+    private static final String PLACE_ORDER = "//*[@id=\"cart_items\"]/div/div[7]/a";
 
 
-    public Cart(WebDriver driver) {
+    public Checkout(WebDriver driver) {
         this.driver = driver;
         productId = driver.findElement(By.xpath(PRODUCT_ID));
-        quaintity = driver.findElement(By.xpath(QUAINTITY));
+        placeOrder = driver.findElement(By.xpath(PLACE_ORDER));
 
     }
     private final WebElement productId;
-    private final WebElement quaintity;
+    private final WebElement placeOrder;
 
     public String getProduct() {
         return productId.getText();
     }
-    public String getQuaintity() {
-        return quaintity.getText();
+    public void clickPlaceOrder() {
+        placeOrder.click();
     }
 }
