@@ -13,5 +13,3 @@ Feature: Cart
     Then update ie reflected on the cart
     When product is deleted from the cart
     Then I see a message 'Cart is empty! Click here to buy products.'
-
-  # Scenario Add product to cart as logged in User
