@@ -6,24 +6,18 @@ public class RespBody {
     private String RspMsg;
     private int code;
     private String RspCodeBody;
-
-
     public String getResponseCode() {
         return responseCode;
     }
-
     public void setResponseCode(String responseCode) {
         this.responseCode = responseCode;
     }
-
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
-
     public int getCode() {
         return code;
     }
@@ -42,6 +36,4 @@ public class RespBody {
     public void setRspCodeBody(String rspCodeBody) {
         RspCodeBody = rspCodeBody;
     }
-
-
 }

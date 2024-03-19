@@ -20,7 +20,6 @@ public class Checkout {
     }
     private final WebElement productId;
     private final WebElement placeOrder;
-
     public String getProduct() {
         return productId.getText();
     }

@@ -10,7 +10,6 @@ public class Cart {
     private static final String PRODUCT_ID = "//*[@id=\"product-8\"]/td[2]/h4/a";
     private static final String QUAINTITY = "//*[@id=\"product-8\"]/td[4]/button";
 
-
     public Cart(WebDriver driver) {
         this.driver = driver;
         productId = driver.findElement(By.xpath(PRODUCT_ID));
