@@ -1,6 +1,7 @@
 package scenarios;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.RespBody;
+import dto.User;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,13 +11,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import org.testng.Assert;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import java.io.IOException;
 
 
 public class ApiSteps {
+    private static Logger logger;
     final String apiUrl = "https://automationexercise.com/api/";
     final String baseUrl = "https://automationexercise.com/";
     OkHttpClient client = new OkHttpClient.Builder().build();
@@ -27,7 +31,7 @@ public class ApiSteps {
 
     @When("I send an API call to create an account with required data: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string},{string}, {string}, {string}, {string}, {string}")
     public void iSendAnAPICallToCreateAnAccountWithRequiredData(String name, String email, String title, String birth_day, String birth_month, String birth_year, String password, String firstname, String lastname, String address1, String address2,String country, String state, String city, String zipcode, String mobile_number) {
-    String endpoint = "createAccount";
+        String endpoint = "createAccount";
         RequestBody body = new FormBody.Builder()
                 .add("name", name)
                 .add("email", email)

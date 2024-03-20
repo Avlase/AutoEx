@@ -3,6 +3,10 @@ package dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import net.bytebuddy.asm.Advice;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
@@ -42,7 +46,6 @@ public class User {
     private String zipcode;
     @JsonProperty("mobile_number")
     private String mobile_number;
-
 
     public String getName() {
         return name;
@@ -185,6 +188,11 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public User() {
+    }
+    public User(String name, String email, String title, String birthDay, String birthMonth, String birthYear, String password, String firstname, String lastname, String address1, String address2, String country, String state, String city, String zipcode, String mobileNumber) {
     }
     @Override
     public String toString() {
