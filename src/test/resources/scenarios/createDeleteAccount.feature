@@ -33,7 +33,7 @@ Feature: Create/Delete account
     When I send an Api call to delete the account with: '<Email>', '<Password>'
     Then response body contains 'Account not found!' message
     Examples:
-      | Email                     | Password  |
+      | Email                     | Password     |
       | accountNotExists@mail.com | somePassword |
 
   Scenario Outline: Check account details received by API call

@@ -1,9 +1,7 @@
 package scenarios;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import dto.RespBody;
-import dto.User;
 import dto.UserType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -27,8 +25,7 @@ public class ApiSteps {
     String product = "8";
     String sessionid = "5sm0tatb8kw384ea2a59bjt3929alv8b";
     RespBody resp = new RespBody();
-
-    User user;
+    UserType user;
 
     @When("I send an API call to create an account with required data: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string},{string}, {string}, {string}, {string}, {string}")
     public void iSendAnAPICallToCreateAnAccountWithRequiredData(String name, String email, String title, String birth_day, String birth_month, String birth_year, String password, String firstname, String lastname, String address1, String address2,String country, String state, String city, String zipcode, String mobile_number) {
@@ -174,19 +171,19 @@ public class ApiSteps {
                 .url(apiUrl+endpoint+urlPar)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            System.out.println(response.body().string());
-            user = mapper.readValue(response.body().string(), User.class);
-            System.out.println(user.getName());
+            String body = response.body().string();
+            System.out.println(body);
+            user = mapper.readValue(body, UserType.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     @Then("response body contains data which is equal to {string}, {string}, {string}, {string}, {string}")
     public void responseBodyContainsDataWhichIsEqualToNameEmailTitlePasswordFirstNameLastName(String name, String email, String title, String firstName, String lastName) {
-        Assert.assertEquals(user.getName(), name);
-        Assert.assertEquals(user.getEmail(), email);
-        Assert.assertEquals(user.getTitle(), title);
-        Assert.assertEquals(user.getFirstName(), firstName);
-        Assert.assertEquals(user.getLastName(), lastName);
+        Assert.assertEquals(user.getUser().getName(), name);
+        Assert.assertEquals(user.getUser().getEmail(), email);
+        Assert.assertEquals(user.getUser().getTitle(), title);
+        Assert.assertEquals(user.getUser().getFirstName(), firstName);
+        Assert.assertEquals(user.getUser().getLastName(), lastName);
     }
 }
