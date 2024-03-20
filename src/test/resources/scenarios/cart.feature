@@ -10,6 +10,6 @@ Feature: Cart
     When I open the cart
     Then I see the product in the cart
     When the quantity is updated for the product
-    Then update ie reflected on the cart
+    Then update is reflected on the cart
     When product is deleted from the cart
     Then I see a message 'Cart is empty! Click here to buy products.'

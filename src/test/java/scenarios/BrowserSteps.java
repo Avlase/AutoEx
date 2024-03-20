@@ -97,7 +97,7 @@ public class BrowserSteps {
         Assert.assertEquals(cart.getProduct(), product, "Another product added or no product available " + cart.getProduct());
     }
 
-    @Then("update ie reflected on the cart")
+    @Then("update is reflected on the cart")
     public void updateIeReflectedOnTheCart() {
         driver.navigate().refresh();
         Cart cart = new Cart(driver);

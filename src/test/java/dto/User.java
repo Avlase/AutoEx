@@ -1,15 +1,34 @@
 package dto;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import net.bytebuddy.asm.Advice;
-import okhttp3.FormBody;
-import okhttp3.RequestBody;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "id",
+        "name",
+        "email",
+        "title",
+        "birth_day",
+        "birth_month",
+        "birth_year",
+        "first_name",
+        "last_name",
+        "company",
+        "address1",
+        "address2",
+        "country",
+        "state",
+        "city",
+        "zipcode"
+})
+
 public class User {
+    @JsonProperty("responseCode")
+    private String responseCode;
+    @JsonProperty("user")
+    private String user;
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
@@ -190,14 +209,12 @@ public class User {
         this.id = id;
     }
 
-    public User() {
-    }
-    public User(String name, String email, String title, String birthDay, String birthMonth, String birthYear, String password, String firstname, String lastname, String address1, String address2, String country, String state, String city, String zipcode, String mobileNumber) {
-    }
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "responseCode='" + responseCode + '\'' +
+                ", user='" + user + '\'' +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

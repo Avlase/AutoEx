@@ -1,7 +1,10 @@
 package scenarios;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import dto.RespBody;
 import dto.User;
+import dto.UserType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,14 +16,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.testng.Assert;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import java.io.IOException;
 
 
 public class ApiSteps {
-    private static Logger logger;
     final String apiUrl = "https://automationexercise.com/api/";
     final String baseUrl = "https://automationexercise.com/";
     OkHttpClient client = new OkHttpClient.Builder().build();
@@ -28,6 +27,8 @@ public class ApiSteps {
     String product = "8";
     String sessionid = "5sm0tatb8kw384ea2a59bjt3929alv8b";
     RespBody resp = new RespBody();
+
+    User user;
 
     @When("I send an API call to create an account with required data: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string},{string}, {string}, {string}, {string}, {string}")
     public void iSendAnAPICallToCreateAnAccountWithRequiredData(String name, String email, String title, String birth_day, String birth_month, String birth_year, String password, String firstname, String lastname, String address1, String address2,String country, String state, String city, String zipcode, String mobile_number) {
@@ -160,5 +161,32 @@ public class ApiSteps {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @When("I send an API call to get account detail by {string}")
+    public void iSendAnAPICallToGetAccountDetailByEmail(String email) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        String endpoint = "getUserDetailByEmail";
+        String urlPar = "?email="+email;
+        Request request = new Request.Builder()
+                .url(apiUrl+endpoint+urlPar)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println(response.body().string());
+            user = mapper.readValue(response.body().string(), User.class);
+            System.out.println(user.getName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Then("response body contains data which is equal to {string}, {string}, {string}, {string}, {string}")
+    public void responseBodyContainsDataWhichIsEqualToNameEmailTitlePasswordFirstNameLastName(String name, String email, String title, String firstName, String lastName) {
+        Assert.assertEquals(user.getName(), name);
+        Assert.assertEquals(user.getEmail(), email);
+        Assert.assertEquals(user.getTitle(), title);
+        Assert.assertEquals(user.getFirstName(), firstName);
+        Assert.assertEquals(user.getLastName(), lastName);
     }
 }
