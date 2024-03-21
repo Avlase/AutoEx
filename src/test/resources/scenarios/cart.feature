@@ -2,7 +2,7 @@ Feature: Cart
 
   Scenario: Add product to cart as logged in User
 
-    Given An product added to the cart for the User
+    Given A product added to the cart for the User
     And Login page
     And I enter 'useremail001@mailinator.com' to the email field
     And I enter 'QAZ123wsx' to the password field

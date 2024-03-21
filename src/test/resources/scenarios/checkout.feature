@@ -2,7 +2,7 @@ Feature: Checkout
 
   Scenario Outline: : Proceed with checkout flow
 
-    Given An product added to the cart for the User
+    Given A product added to the cart for the User
     And Login page
     And I enter 'useremail001@mailinator.com' to the email field
     And I enter 'QAZ123wsx' to the password field

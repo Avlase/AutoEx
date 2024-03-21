@@ -23,7 +23,7 @@ public class ApiSteps {
     OkHttpClient client = new OkHttpClient.Builder().build();
     ObjectMapper objectMapper = new ObjectMapper();
     String product = "8";
-    String sessionid = "5sm0tatb8kw384ea2a59bjt3929alv8b";
+    String sessionid = "pdfrnl7qf0xsn52ck36z0kq1m5mcepvt";
     RespBody resp = new RespBody();
     UserType user;
 
@@ -116,7 +116,7 @@ public class ApiSteps {
         Assert.assertEquals(resp.getRspCodeBody(), rcodeBody, "Response code is not as " + rcodeBody);
     }
 
-    @Given("An product added to the cart for the User")
+    @Given("A product added to the cart for the User")
     public void anProductAddedToTheCartForTheUser() {
         String endpoint = "add_to_cart/";
         Request request = new Request.Builder()

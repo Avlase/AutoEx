@@ -2,7 +2,7 @@ Feature: Create/Delete account
 
   Scenario Outline: Create an account via API call
     When I send an API call to create an account with required data: '<Name>', '<Email>', '<title>', '<birth_day>', '<birth_month>', '<birth_year>', '<Password>', '<FirstName>', '<LastName>', '<Address1>', '<Address2>','<Country>', '<State>', '<City>', '<Zipcode>', '<mobile_number>'
-    Then Get details by '<email>' response code is 200
+    Then Get details by '<Email>' response code is 200
     And Login page
     And I enter '<Email>' to the email field
     And I enter '<Password>' to the password field
